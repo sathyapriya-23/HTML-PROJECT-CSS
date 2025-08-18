@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #b5e2eb7a;
+}
+.container{
+    display: flex;
+    padding: 100px;
+    justify-content:space-around;
+    align-items:center ;
+    height: 100vh;
+}
+.left-section{
+    width: 300px;
+}
+.left-section h1{
+    color: #61250d;
+    font-size: 40px;
+    font-weight: bolder;
+}
+.left-section p{
+    color: #171717;
+    font-size: 20px;
+}
+.right-section{
+    max-width: 500px;
+    padding: 30px;
+    background-color: rgb(24, 68, 46);
+    border-radius: 10px;
+}
+.login-form{
+    display: flex;
+    flex-direction: column;
+}
+.input{
+    flex:1;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #61250d;
+    border-radius: 5px;
+    background-color: #f5f6f7;
+    font-size: 15px;
+}
+.login{
+    padding: 15px;
+    margin: 10px 0 ;
+    background-color: #5268e4;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.forgot{
+    color: #48c7db;
+    font-size: 14px;
+    text-align: center;
+    align-items:center;
+    margin: 10px 0;
+    display: block;
+}
+hr{
+    margin: 10px 0;
+    height: 1px;
+}
+.create{
+    display: block;
+    padding: 15px;
+    background-color: #067394;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
