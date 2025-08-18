@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registeration Form</title>
+    <link rel="stylesheet" href="Project-3 Registration Form.css">
+</head>
+<body>
+    <h2>REGISTRATION FROM</h2>
+    <form>
+       <div> 
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label  for="email">Email</label>
+            <input type="email" name="email" id="email">
+         </div>
+         <div>
+            <label  for="password">Password</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <div>
+            <label for="phone_number">phone_number</label>
+            <input type="tel" name="phone_number" id="phone_number">
+      </div>
+      <div>
+            <label for="">Gender:</label>
+            <select name="gender" id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+      </div>
+      <div>
+            <label for="language">Language</label>
+            <input type="text" name="language" id="language" required>
+       </div>
+       <div>
+            <label for="zip_code">zip_code</label>
+            <input type="text" name="zip_code" id="zip_code">
+       </div>
+       <div>
+            <label for="about">About</label>
+            <textarea name ="about" id="about"></textarea>
+       </div>
+       <div>
+        <input type="submit" value="Register">
+       </div>
+    </form>
+</body>
+</html>
