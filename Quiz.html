@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <h1>Quiz App</h1>
+    <div id="quiz-container">
+        <p id="question"></p>
+        <div id="options"></div>
+        <p>Time left: <span id="timer">10</span></p>
+        <p>Score <span id="score">0</span></p>
+    </div><br>
+        <button  onclick="startQuiz()">Start Quiz</button>
+        <button onclick="viewScores()">View Score</button>
+</body>
+<script>
+    const quizdata = [{
+        question: "Which language runs in a web browser?", 
+        options: ["Java", "C", "Python", "JavaScript"], 
+        answer: "JavaScript" },
+        {
+            question: "What does CSS stand for?", 
+            options: ["Central Style Sheets", "Cascading Style Sheets", "Computer Style Sheets", "Creative Style Sheets"], 
+            answer: "Cascading Style Sheets"},
+        {
+            question: "Which HTML tag is used to display an image?", 
+            options: ["<img>", "<image>", "<src>", "<pic>"], 
+            answer: "<img>"}];
+            let score = 0;
+            let currentIndex = 0;
+            let timeleft = 10;
+            let timer;
+
+            function fetchQuizData(){
+                return new Promise((resolve)=>{
+                    setTimeout(()=>resolve(quizdata),1000);
+                });
+            }
+            async function startQuiz(){
+                score = 0;
+                currentIndex = 0;
+                document.getElementById("score").innerText = score;
+                const questions = await fetchQuizData();
+                loadQuestion(questions);
+            }
+            function loadQuestion(questions){
+               if(currentIndex >= questions.length){
+                endQuiz();
+                return;
+               } 
+            const{question,options,answer} = questions[currentIndex];
+            document.getElementById("question").innerText = question;
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            options.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.innerText = opt;
+                btn.className = "option";
+                btn.onclick= ()=>checkAnswer(opt,answer,questions);
+                optionsDiv.appendChild(btn);
+            });
+        timeleft = 10;
+            document.getElementById("timer").innerText = timeleft;
+            clearInterval(timer);
+            timer = setInterval(()=>{
+                timeleft--;
+                document.getElementById("timer").innerText = timeleft;
+                if(timeleft===0){
+                    clearInterval(timer);
+                    nextQuestions(questions);
+                }
+            },1000);}
+
+            function checkAnswer(selected,correct,questions){
+                if(selected === correct){
+                    score++;
+                    document.getElementById("score").innerText = score;
+                }
+                nextQuestions(questions);
+            }
+            function nextQuestions(questions){
+                currentIndex++;
+                loadQuestion(questions);
+            }
+            
+            function endQuiz(){
+                clearInterval(timer);
+                alert(Quiz Over! Your Score: ${score});
+                let pastScores = JSON.parse(localStorage.getItem
+                ("quizscores")) || [];
+                pastScores = [...pastScores,score];
+                localStorage.setItem("quizscores",JSON.stringify(pastScores));
+            }
+            function viewScores(){
+                let pastScores = JSON.parse(localStorage.getItem
+                ("quizscores")) || [];
+                alert(PastScores: ${pastScores.join(",")});
+            }
+</script>
+</html>
